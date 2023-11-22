@@ -1,0 +1,29 @@
+@font-face {
+  font-weight: 800;
+  font-family: 'Manrope', sans-serif;
+  src: url("fonts/Manrope-VariableFont_wght.ttf");
+  src: url("fonts/static/Manrope-ExtraBold.ttf");
+}
+@font-face {
+  font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+  src: url("fonts/Manrope-VariableFont_wght.ttf");
+  src: url("fonts/static/Manrope-Medium.ttf");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+a {
+  text-decoration: none;
+}
+* {
+  box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-weight: 800;
+}
+h1, h2, h3, h4 {
+  margin: 0;
+}
