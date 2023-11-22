@@ -1,6 +1,6 @@
 <template>
   <div>
-    dsfsdff
+    <sidebar-main/>
   </div>
 </template>
 
@@ -8,7 +8,10 @@
 
 
 
+import SidebarMain from "@/components/SidebarMain.vue";
+
 export default {
+  components: {SidebarMain}
 
 }
 </script>
