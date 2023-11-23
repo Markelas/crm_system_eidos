@@ -1,0 +1,171 @@
+@font-face {
+  font-weight: 800;
+  font-family: "Manrope", sans-serif;
+  src: url("fonts/Manrope-VariableFont_wght.ttf");
+  src: url("fonts/static/Manrope-ExtraBold.ttf");
+}
+@font-face {
+  font-weight: 500;
+  font-family: "Manrope", sans-serif;
+  src: url("fonts/Manrope-VariableFont_wght.ttf");
+  src: url("fonts/static/Manrope-Medium.ttf");
+}
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-weight: 800;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+.sidebar {
+  color: black;
+  background-color: white;
+  float: left;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 0.5em;
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  margin: 12px 12px 12px 33px;
+}
+.sidebar__logo__icon {
+  max-width: 46px;
+  max-height: 46px;
+}
+.sidebar__logo__name {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 116.667%;
+  margin-left: 12px;
+}
+.sidebar__logo--active {
+  margin: 12px 10px;
+}
+.sidebar__logo__icon--active {
+  max-width: 30px;
+  max-height: 30px;
+}
+.sidebar__collapse-icon {
+  position: absolute;
+  top: 31px;
+  left: 262px;
+  transition: 0.2s linear;
+  animation: collapse 3s ease-in-out infinite;
+}
+.sidebar .sidebar__collapse-icon--closed {
+  transform: rotate(180deg);
+  transition: 0.2s linear;
+  left: 40px;
+}
+.sidebar__list {
+  margin-top: 30px;
+}
+.sidebar__list__item {
+  padding: 14px;
+  display: flex;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.sidebar__list__item:hover {
+  border-radius: 16px;
+  background: #F4F4F4;
+}
+.sidebar__list__item--active {
+  padding: 12px;
+  display: flex;
+  border-radius: 16px;
+  color: white;
+  background: #3761F3;
+  cursor: default;
+}
+.sidebar__list .item__icon {
+  margin-right: 12px;
+}
+.sidebar__bottom {
+  position: absolute;
+  bottom: 45px;
+  z-index: 5;
+}
+.sidebar__teacher {
+  cursor: pointer;
+  margin-left: 5px;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.12);
+}
+.sidebar__teacher img {
+  margin-left: 27px;
+}
+.sidebar__teacher .teacher__info__name {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 160%;
+}
+.sidebar__teacher .teacher__info__title {
+  color: rgba(47, 49, 68, 0.65);
+  font-size: 13px;
+  line-height: 153.846%;
+}
+.sidebar__logout {
+  padding: 12px;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.sidebar__logout__icon {
+  margin-right: 12px;
+}
+.sidebar__lng {
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.sidebar__lng__icon {
+  margin-right: 12px;
+}
+.sidebar__lng__arrow {
+  position: relative;
+  left: 90px;
+}
+
+/*---------------StudySession---------------*/
+.study-session {
+  background-color: white;
+  border-radius: 8px;
+  margin: 8px 8px 0 8px;
+  height: 100%;
+}
+.study-session__title {
+  padding-top: 22px;
+  margin-left: 24px;
+}
+
+/*# sourceMappingURL=style.css.map */
