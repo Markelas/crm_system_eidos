@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import {collapsed, toggleSidebar, sidebarWidthChange} from "../../stores/state";
+import {collapsed, toggleSidebar, sidebarWidthChange} from "../../stores/sidebarState";
 import CollapseIcon from "@/components/icons/sidebar-icons/CollapseIcon.vue";
 import CalendarBlankIcon from "@/components/icons/sidebar-icons/CalendarBlankIcon.vue";
 import GraduationCap from "@/components/icons/sidebar-icons/GraduationCap.vue";

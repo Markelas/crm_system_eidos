@@ -1,146 +1,165 @@
 <script>
 import { defineComponent } from 'vue'
+import moment from 'moment'
+import FilterIcon from "@/components/icons/FilterIcon.vue";
+import IncreaseIcon from "@/components/icons/IncreaseIcon.vue";
 export default defineComponent({
+  components: {IncreaseIcon, FilterIcon},
+  props: ['tableInfo'],
   data () {
     return {
-      page: 1,
-      itemsPerPage: 5,
+      search: '',
       headers: [
-        {
-          align: 'start',
-          key: 'name',
-          sortable: false,
-          title: 'Дата и время',
-        },
-        { title: 'Статус', key: 'calories' },
-        { title: 'Название учебного модуля', key: 'fat' },
-        { title: 'Тип сессии', key: 'carbs' },
-        { title: 'Комната', key: 'protein' },
-        { title: 'Группа', key: 'iron' },
-      ],
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: 1,
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: 7,
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: 8,
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: 16,
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: 0,
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: 2,
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: 45,
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: 22,
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: 6,
-        },
+        { key: 'start', title: 'Дата и время'},
+        { key: 'status', title: 'Статус' },
+        { key: 'modulName', title: 'Название учебного модуля' },
+        { key: 'sessionType', title: 'Тип сессии' },
+        { key: 'rooms', title: 'Комната' },
+        { key: 'groups', title: 'Группа' },
       ],
     }
   },
   computed: {
-    pageCount () {
-      return Math.ceil(this.desserts.length / this.itemsPerPage)
+    createDataArray () {
+      console.log('this.tableInfo', this.tableInfo)
+      return this.tableInfo.map((el)=> {
+        return {
+          start: moment(el.start).format('DD.MM.YYYY, HH:MM'),
+          status: this.statusNameTranslate(el.status),
+          modulName: el.module,
+          sessionType: this.sessionTypeTranslate(el.type),
+          rooms: this.checkRooms(el.rooms),
+          groups: this.checkGroups(el.groups)
+        }
+      })
     },
   },
+  methods: {
+    statusNameTranslate(element) {
+      switch (element.name) {
+        case 'planned':
+          return 'Запланировано';
+        case 'completed':
+          return "Завершено";
+        case 'canceled':
+          return 'Отмененно'
+      }
+    },
+    sessionTypeTranslate(element) {
+      switch (element.name) {
+        case "lesson":
+          return 'Урок';
+        case 'accreditation':
+          return "Аккредитация";
+        case 'examination':
+          return 'Экзамен'
+      }
+    },
+    checkRooms(element) {
+      let roomText = ''
+      element.forEach((el)=> {
+        roomText += el.name + ', '
+      })
+      if (roomText) { //Если были комнаты, то убираем пробел и запятую в конце
+        roomText = roomText.slice(0, -2)
+      }
+      return roomText
+    },
+    checkGroups(element) {
+      let groupText = ''
+      element.forEach((el)=> {
+        groupText += el.name + ', '
+      })
+      if (groupText) { //Если были комнаты, то убираем пробел и запятую в конце
+        groupText = groupText.slice(0, -2)
+      }
+      return groupText
+    },
+    getColor (element) {
+      console.log(element)
+      if (element === "Запланировано") return 'blue'
+      else if (element === "Завершено") return 'green'
+      else return 'red'
+    },
+  }
 })
 </script>
 
 <template>
-  <v-data-table
-      v-model:page="page"
-      :headers="headers"
-      :items="desserts"
-      :items-per-page="itemsPerPage"
+  <div class="table__sort-btns">
+    <v-text-field
+        filt
+        v-model="search"
+        label="Поиск"
+        prepend-inner-icon="mdi-magnify"
+        single-line
+        variant="outlined"
+        hide-details
+    ></v-text-field>
+    <button class="table__sort-btns__icon"><filter-icon/></button>
+    <button class="table__sort-btns__icon"><increase-icon/></button>
+    <button class="table__sort-btns__create">Создать</button>
+  </div>
+
+  <v-card
+      flat
   >
-    <template v-slot:top>
-      <v-text-field
-          :model-value="itemsPerPage"
-          class="pa-2"
-          hide-details
-          label="Items per page"
-          min="-1"
-          max="15"
-          type="number"
-          @update:model-value="itemsPerPage = parseInt($event, 10)"
-      ></v-text-field>
+
+    <template v-slot:text>
     </template>
 
-    <template v-slot:bottom>
-      <div class="text-center pt-2">
-        <v-pagination
-            v-model="page"
-            :length="pageCount"
-        ></v-pagination>
-      </div>
-    </template>
-  </v-data-table>
+    <v-data-table
+        :headers="headers"
+        :items="createDataArray"
+        :search="search"
+    >
+      <template v-slot:[`item.status`]="{ value }">
+        <v-chip :color="getColor(value)">
+          {{ value }}
+        </v-chip>
+      </template>
+    </v-data-table>
+  </v-card>
 </template>
 
 <style>
+.v-table__wrapper{
+  margin: 20px;
+  border: 2px solid #F4F4F4;
+  border-radius: 12px;
+
+}
+.v-data-table__th {
+  background-color:#F4F4F4 !important;
+}
+.v-data-table__th:nth-child(1) {
+  width: 10%;
+}
+.v-data-table__tr:nth-child(2n) {
+
+  background-color:#F4F4F4 !important;
+
+}
+.v-field__input{
+  padding: 0 !important;
+  min-height: 40px !important;
+}
+
+.v-card-text{
+  padding: 0!important;
+}
+.v-text-field{
+  max-width: 260px;
+}
+.v-input__control{
+  max-width: 260px;
+  height: 44px;
+}
+
+</style>
+<style scoped>
+:deep(span){
+  font-weight: 800;
+}
 
 </style>

@@ -23,6 +23,8 @@ export default {
 <style>
 body{
   background-color: #F4F4F8;
+}
+.active-page{
   margin-left: 274px;
 }
 </style>

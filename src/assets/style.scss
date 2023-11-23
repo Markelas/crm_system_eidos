@@ -22,7 +22,7 @@ a {
   font-family: 'Manrope', sans-serif;
   margin: 0;
   padding: 0;
-  font-weight: 800;
+  font-weight: 500;
 }
 h1, h2, h3, h4 {
   margin: 0;
@@ -84,6 +84,9 @@ h1, h2, h3, h4 {
       display: flex;
       cursor: pointer;
       transition: 0.2s;
+      p {
+        font-weight: 800;
+      }
       &:hover{
         border-radius: 16px;
         background: #F4F4F4;
@@ -103,7 +106,7 @@ h1, h2, h3, h4 {
   }
   &__bottom{
     position:absolute;
-    bottom:45px;
+    bottom:15px;
     z-index: 5;
   }
   &__teacher{
@@ -138,6 +141,7 @@ h1, h2, h3, h4 {
     display: flex;
     align-items: center;
     cursor: pointer;
+    font-weight: 800;
     &__icon{
       margin-right: 12px;
     }
@@ -149,6 +153,7 @@ h1, h2, h3, h4 {
     display: flex;
     align-items: center;
     cursor: pointer;
+    font-weight: 800;
     &__icon{
       margin-right: 12px;
     }
@@ -168,5 +173,30 @@ h1, h2, h3, h4 {
   &__title{
     padding-top: 22px;
     margin-left: 24px;
+    width: 300px;
   }
 }
+
+.table__sort-btns{
+  display: flex;
+  justify-content: flex-end;
+  margin: -25px 24px 0 0;
+  &__icon{
+    max-width: 44px;
+    max-height: 44px;
+    padding: 10px 10px;
+    background-color: rgba(47, 49, 68, 0.08);
+    border-radius: 12px;
+    margin-left: 14px;
+  }
+  &__create{
+    color: white;
+    border-radius: 12px;
+    background-color: rgba(55, 97, 243, 1);
+    max-height: 44px;
+    max-width: 112px;
+    padding: 0 16px;
+    margin-left: 14px;
+  }
+}
+

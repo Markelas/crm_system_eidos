@@ -9,3 +9,4 @@ export const sidebarWidthChange = computed( //компьютед свойств�
     () => `${collapsed.value ? SIDEBAR_WIDTH_COLLAPSED : SIDEBAR_WIDTH}px`
 )
 
+
