@@ -8,6 +8,8 @@ export default defineComponent({
   props: ['tableInfo'],
   data () {
     return {
+      page: 1,
+      itemsPerPage: 5,
       search: '',
       headers: [
         { key: 'start', title: 'Дата и время'},
@@ -32,6 +34,9 @@ export default defineComponent({
           groups: this.checkGroups(el.groups)
         }
       })
+    },
+    pageCount () {
+      return Math.ceil(this.tableInfo.length / this.itemsPerPage)
     },
   },
   methods: {
@@ -76,12 +81,11 @@ export default defineComponent({
       return groupText
     },
     getColor (element) {
-      console.log(element)
       if (element === "Запланировано") return 'blue'
       else if (element === "Завершено") return 'green'
       else return 'red'
     },
-  }
+  },
 })
 </script>
 
@@ -118,6 +122,16 @@ export default defineComponent({
           {{ value }}
         </v-chip>
       </template>
+
+      <template v-slot:bottom>
+        <div class="text-center pt-2">
+          <v-pagination
+              v-model="page"
+              :length="pageCount"
+          ></v-pagination>
+        </div>
+      </template>
+
     </v-data-table>
   </v-card>
 </template>
