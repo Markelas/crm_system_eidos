@@ -187,9 +187,9 @@ body {
 }
 
 .table__body-info .v-table__wrapper {
-  margin: 20px;
+  margin: 20px 20px 0 20px;
   border: 2px solid #F4F4F4;
-  border-radius: 12px;
+  border-radius: 12px 12px 0px 0px;
 }
 .table__body-info .v-data-table__th {
   background-color: #F4F4F4 !important;
@@ -235,6 +235,47 @@ body {
   max-width: 112px;
   padding: 0 16px;
   margin-left: 14px;
+}
+.table__body-info .table__bottom {
+  background-color: rgb(245, 247, 249);
+  margin: 0 20px 10px 20px;
+  border-radius: 0 0 12px 12px;
+  max-height: 52px;
+}
+.table__body-info .table__bottom__pagination {
+  height: 52px;
+}
+.table__body-info .table__bottom__pagination .v-pagination__list {
+  justify-content: normal !important;
+  margin: 8px 11px 11px 16px;
+}
+.table__body-info .table__bottom__pagination .v-pagination__prev,
+.table__body-info .table__bottom__pagination .v-pagination__next {
+  border-radius: 8px;
+  background-color: white;
+  height: 30px;
+}
+.table__body-info .table__bottom__pagination .v-pagination__prev:hover,
+.table__body-info .table__bottom__pagination .v-pagination__next:hover {
+  border: 1px solid #3761F3;
+  background-color: #FFF;
+  color: #3761F3;
+}
+.table__body-info .table__bottom__pagination .v-btn--icon {
+  width: 30px;
+  height: 30px;
+}
+.table__body-info .table__bottom__pagination .v-pagination__item {
+  background-color: white;
+  border-radius: 8px;
+}
+.table__body-info .table__bottom__pagination .v-pagination__item:hover {
+  border: 1px solid #3761F3;
+  background-color: #FFF;
+  color: #3761F3;
+}
+.table__body-info .table__bottom__pagination .v-pagination__item .v-pagination__item__--is-active {
+  border-radius: 8px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -9,7 +9,8 @@ export default defineComponent({
   data () {
     return {
       page: 1,
-      itemsPerPage: 10,
+      itemsPerPage: 11,
+      options: {},
       search: '',
       headers: [
         { key: 'start', title: 'Дата и время'},
@@ -109,14 +110,12 @@ export default defineComponent({
         flat
     >
 
-      <template v-slot:text>
-      </template>
-
       <v-data-table
           :headers="headers"
           :items="createDataArray"
           :search="search"
           :items-per-page="itemsPerPage"
+          :page="page"
       >
         <template v-slot:[`item.status`]="{ value }">
           <v-chip :color="getColor(value)">
@@ -124,15 +123,17 @@ export default defineComponent({
           </v-chip>
         </template>
 
-  <!--      <template v-slot:bottom>-->
-  <!--        <div class="text-center pt-2">-->
-  <!--          <v-pagination-->
-  <!--              v-model="page"-->
-  <!--              :length="pageCount"-->
-  <!--              @update:model-value="page = page++"-->
-  <!--          ></v-pagination>-->
-  <!--        </div>-->
-  <!--      </template>-->
+        <template v-slot:bottom>
+          <div class="table__bottom">
+            <v-pagination
+                v-model="page"
+                :length="pageCount"
+                @update:model-value="page = $event"
+                :total-visible="6"
+                class="table__bottom__pagination"
+            ></v-pagination>
+          </div>
+        </template>
 
       </v-data-table>
     </v-card>
