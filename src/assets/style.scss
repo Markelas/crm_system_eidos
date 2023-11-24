@@ -114,6 +114,12 @@ body{
       margin-right: 12px;
     }
   }
+  @media (max-height: 733px) {
+    .sidebar__list{ //Скрываем часть навигации и отображаем скролл
+      max-height: 274px;
+      overflow-y: scroll;
+    }
+  }
   &__bottom{
     position:absolute;
     bottom:15px;

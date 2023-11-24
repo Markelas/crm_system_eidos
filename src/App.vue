@@ -13,11 +13,13 @@
 
 import SidebarMain from "@/components/SidebarMain.vue";
 import StudySession from "@/components/StudySession.vue";
-import {collapsed} from "../stores/sidebarState";
+import store from "../stores/state";
 
 export default {
-  setup(){
-    return {collapsed}
+  computed: {
+    collapsed() {
+      return store.state.collapsed
+    },
   },
   components: {StudySession, SidebarMain}
 

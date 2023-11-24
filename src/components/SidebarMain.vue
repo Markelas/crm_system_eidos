@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import {collapsed, toggleSidebar, sidebarWidthChange} from "../../stores/sidebarState";
 import CollapseIcon from "@/components/icons/sidebar-icons/CollapseIcon.vue";
 import CalendarBlankIcon from "@/components/icons/sidebar-icons/CalendarBlankIcon.vue";
 import GraduationCap from "@/components/icons/sidebar-icons/GraduationCap.vue";
@@ -44,6 +43,7 @@ import LogOutIcon from "@/components/icons/sidebar-icons/LogOutIcon.vue";
 import RUIcon from "@/components/icons/sidebar-icons/RUIcon.vue";
 import MainLogo from "@/components/icons/MainLogo.vue";
 import ArrowDownIcon from "@/components/icons/sidebar-icons/ArrowDownIcon.vue";
+import store from "../../stores/state";
 export default {
   components: {
     ArrowDownIcon,
@@ -54,8 +54,18 @@ export default {
     SettingsIcon,
     VideoCameraIcon, UserListIcon, StudentIcon, DoorIcon, GraduationCap, CalendarBlankIcon, CollapseIcon},
   props: {},
-  setup() {
-    return {collapsed, toggleSidebar, sidebarWidthChange}
+  computed: {
+    sidebarWidthChange() {
+      return store.getters.sidebarWidthChange
+    },
+    collapsed() {
+      return store.state.collapsed
+    },
+  },
+  methods: {
+    toggleSidebar() {
+      store.commit('toggleSidebar')
+    },
   }
 }
 </script>

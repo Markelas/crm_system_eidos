@@ -1,6 +1,6 @@
 <script>
 import TableMain from "@/components/TableMain.vue";
-import store from "../../stores/tableState";
+import store from "../../stores/state";
 export default {
   async created() {
     function getInfoFromJSON () { //Запрос данных
