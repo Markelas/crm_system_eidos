@@ -9,7 +9,7 @@ export default defineComponent({
   data () {
     return {
       page: 1,
-      itemsPerPage: 5,
+      itemsPerPage: 10,
       search: '',
       headers: [
         { key: 'start', title: 'Дата и время'},
@@ -23,7 +23,6 @@ export default defineComponent({
   },
   computed: {
     createDataArray () {
-      console.log('this.tableInfo', this.tableInfo)
       return this.tableInfo.map((el)=> {
         return {
           start: moment(el.start).format('DD.MM.YYYY, HH:MM'),
@@ -90,85 +89,57 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="table__sort-btns">
-    <v-text-field
-        filt
-        v-model="search"
-        label="Поиск"
-        prepend-inner-icon="mdi-magnify"
-        single-line
-        variant="outlined"
-        hide-details
-    ></v-text-field>
-    <button class="table__sort-btns__icon"><filter-icon/></button>
-    <button class="table__sort-btns__icon"><increase-icon/></button>
-    <button class="table__sort-btns__create">Создать</button>
-  </div>
+  <div class="table__body-info">
+    <div class="table__sort-btns">
+      <v-text-field
+          filt
+          v-model="search"
+          label="Поиск"
+          prepend-inner-icon="mdi-magnify"
+          single-line
+          variant="outlined"
+          hide-details
+      ></v-text-field>
+      <button class="table__sort-btns__icon"><filter-icon/></button>
+      <button class="table__sort-btns__icon"><increase-icon/></button>
+      <button class="table__sort-btns__create">Создать</button>
+    </div>
 
-  <v-card
-      flat
-  >
-
-    <template v-slot:text>
-    </template>
-
-    <v-data-table
-        :headers="headers"
-        :items="createDataArray"
-        :search="search"
+    <v-card
+        flat
     >
-      <template v-slot:[`item.status`]="{ value }">
-        <v-chip :color="getColor(value)">
-          {{ value }}
-        </v-chip>
+
+      <template v-slot:text>
       </template>
 
-      <template v-slot:bottom>
-        <div class="text-center pt-2">
-          <v-pagination
-              v-model="page"
-              :length="pageCount"
-          ></v-pagination>
-        </div>
-      </template>
+      <v-data-table
+          :headers="headers"
+          :items="createDataArray"
+          :search="search"
+          :items-per-page="itemsPerPage"
+      >
+        <template v-slot:[`item.status`]="{ value }">
+          <v-chip :color="getColor(value)">
+            {{ value }}
+          </v-chip>
+        </template>
 
-    </v-data-table>
-  </v-card>
+  <!--      <template v-slot:bottom>-->
+  <!--        <div class="text-center pt-2">-->
+  <!--          <v-pagination-->
+  <!--              v-model="page"-->
+  <!--              :length="pageCount"-->
+  <!--              @update:model-value="page = page++"-->
+  <!--          ></v-pagination>-->
+  <!--        </div>-->
+  <!--      </template>-->
+
+      </v-data-table>
+    </v-card>
+  </div>
 </template>
 
 <style>
-.v-table__wrapper{
-  margin: 20px;
-  border: 2px solid #F4F4F4;
-  border-radius: 12px;
-
-}
-.v-data-table__th {
-  background-color:#F4F4F4 !important;
-}
-.v-data-table__th:nth-child(1) {
-  width: 10%;
-}
-.v-data-table__tr:nth-child(2n) {
-
-  background-color:#F4F4F4 !important;
-
-}
-.v-field__input{
-  padding: 0 !important;
-  min-height: 40px !important;
-}
-
-.v-card-text{
-  padding: 0!important;
-}
-.v-text-field{
-  max-width: 260px;
-}
-.v-input__control{
-  max-width: 260px;
-  height: 44px;
-}
 
 </style>
 <style scoped>

@@ -30,6 +30,18 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
+body {
+  background-color: #F4F4F8;
+}
+
+.active-page {
+  margin-left: 274px;
+}
+
+.active-page--roll {
+  margin-left: 75px;
+}
+
 .sidebar {
   color: black;
   background-color: white;
@@ -174,12 +186,40 @@ h1, h2, h3, h4 {
   width: 300px;
 }
 
-.table__sort-btns {
+.table__body-info .v-table__wrapper {
+  margin: 20px;
+  border: 2px solid #F4F4F4;
+  border-radius: 12px;
+}
+.table__body-info .v-data-table__th {
+  background-color: #F4F4F4 !important;
+}
+.table__body-info .v-data-table__th:nth-child(1) {
+  width: 10%;
+}
+.table__body-info .v-data-table__tr:nth-child(2n) {
+  background-color: #F4F4F4 !important;
+}
+.table__body-info .v-field__input {
+  padding: 0 !important;
+  min-height: 40px !important;
+}
+.table__body-info .v-card-text {
+  padding: 0 !important;
+}
+.table__body-info .v-text-field {
+  max-width: 260px;
+}
+.table__body-info .v-input__control {
+  max-width: 260px;
+  height: 44px;
+}
+.table__body-info .table__sort-btns {
   display: flex;
   justify-content: flex-end;
   margin: -25px 24px 0 0;
 }
-.table__sort-btns__icon {
+.table__body-info .table__sort-btns__icon {
   max-width: 44px;
   max-height: 44px;
   padding: 10px 10px;
@@ -187,7 +227,7 @@ h1, h2, h3, h4 {
   border-radius: 12px;
   margin-left: 14px;
 }
-.table__sort-btns__create {
+.table__body-info .table__sort-btns__create {
   color: white;
   border-radius: 12px;
   background-color: rgb(55, 97, 243);

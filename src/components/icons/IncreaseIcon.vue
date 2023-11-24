@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M5.05273 12C5.05273 11.5858 5.38852 11.25 5.80273 11.25H17.8027C18.2169 11.25 18.5527 11.5858 18.5527 12C18.5527 12.4142 18.2169 12.75 17.8027 12.75H5.80273C5.38852 12.75 5.05273 12.4142 5.05273 12Z" fill="#2F3144" fill-opacity="0.65"/>
@@ -9,6 +5,11 @@
     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.80273 16.5C8.80273 16.0858 9.13852 15.75 9.55273 15.75H14.0527C14.4669 15.75 14.8027 16.0858 14.8027 16.5C14.8027 16.9142 14.4669 17.25 14.0527 17.25H9.55273C9.13852 17.25 8.80273 16.9142 8.80273 16.5Z" fill="#2F3144" fill-opacity="0.65"/>
   </svg>
 </template>
+
+<script setup>
+
+</script>
+
 
 <style scoped>
 

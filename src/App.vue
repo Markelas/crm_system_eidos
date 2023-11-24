@@ -25,13 +25,5 @@ export default {
 </script>
 
 <style>
-body{
-  background-color: #F4F4F8;
-}
-.active-page{
-  margin-left: 274px;
-}
-.active-page--roll{
-  margin-left: 75px;
-}
+
 </style>

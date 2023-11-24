@@ -7,7 +7,6 @@ export default {
       store.dispatch("getTableInfo")
     }
     await getInfoFromJSON()
-    console.log('store.state.tableData', store.state.tableData)
   },
   computed: {
     tableInfo() {

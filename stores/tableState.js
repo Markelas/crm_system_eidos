@@ -15,7 +15,6 @@ const store = createStore({
             try {
                 const response = await axios.get(`db/data1.json`)
                 context.commit('changeTableData', response.data.sessions)
-                console.log(response.data.sessions)
             } catch (err) {
                 console.error(err)
             }
