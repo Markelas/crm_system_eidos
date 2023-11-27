@@ -2,12 +2,27 @@
   <template>
     <div class="text-center">
       <v-dialog
-          width="1000"
+          width="900"
           v-model="dialog"
       >
-        <v-card>
+        <v-card class="rounded-lg">
+          <v-card-title class="text-center create__card__title">Добавление новой учебной сессии</v-card-title>
           <v-form v-model="form" @submit.prevent="submitHandler">
             <v-container>
+              <v-row>
+                <v-col
+                    cols="12"
+                    sm="12"
+                >
+                  <v-text-field
+                      v-model="studyModule"
+                      variant="solo"
+                      label="Название учебного модуля"
+                      minlength="4"
+                      :rules="[required ]"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
               <v-row>
                 <v-col
                     cols="12"
@@ -19,20 +34,6 @@
                       variant="solo"
                       type="datetime-local"
                       :rules="[required, correctDate]"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col
-                    cols="12"
-                    sm="6"
-                >
-                  <v-text-field
-                      v-model="studyModule"
-                      variant="solo"
-                      label="Название учебного модуля"
-                      minlength="4"
-                      :rules="[required ]"
                   ></v-text-field>
                 </v-col>
 
@@ -121,14 +122,15 @@ export default {
   methods:{
     submitHandler() {
       if (this.form){ //Если форма заполнена
-        this.addNewValue() //Вызываем функцию добавления новой записи
+        this.addNewValue() //Вызываем функцию добавления в state
         this.start = '' //Очищаем
         this.studyModule = ''
         this.sessionType = ''
         this.room = ''
         this.group = ''
         this.dialog = false
-        this.$emit('add')
+        this.$emit('add') //Вызываем событие в родительском компоненте на добавление записи
+        this.$emit('close') //Переключаем статус модального окна
       }
     },
     addNewValue() {

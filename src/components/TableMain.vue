@@ -92,7 +92,7 @@ export default defineComponent({
       return this.isActiveCreateSessionModal = !this.isActiveCreateSessionModal
     },
     pushNewSession() {
-      this.tableInfo.unshift(store.state.createNewSession);
+      this.tableInfo.unshift(store.state.createNewSession); //Добавляем в начало запись из state
       return this.tableInfo
     }
   },
