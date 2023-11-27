@@ -92,7 +92,6 @@ export default defineComponent({
       return this.isActiveCreateSessionModal = !this.isActiveCreateSessionModal
     },
     pushNewSession() {
-      console.log(this.tableInfo)
       this.tableInfo.unshift(store.state.createNewSession);
       return this.tableInfo
     }

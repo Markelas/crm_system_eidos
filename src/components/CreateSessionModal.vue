@@ -6,7 +6,7 @@
           v-model="dialog"
       >
         <v-card>
-          <v-form @submit.prevent="submitHandler">
+          <v-form v-model="form" @submit.prevent="submitHandler">
             <v-container>
               <v-row>
                 <v-col
@@ -18,7 +18,7 @@
                       label="Дата и время проведения"
                       variant="solo"
                       type="datetime-local"
-                      :rules="[rules.required]"
+                      :rules="[required, correctDate]"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -32,7 +32,7 @@
                       variant="solo"
                       label="Название учебного модуля"
                       minlength="4"
-                      :rules="[rules.required]"
+                      :rules="[required ]"
                   ></v-text-field>
                 </v-col>
 
@@ -45,7 +45,7 @@
                       variant="solo"
                       label="Тип сессии"
                       :items="['Аккредитация', 'Урок', 'Экзамен']"
-                      :rules="[rules.required]"
+                      :rules="[required]"
                   ></v-select>
                 </v-col>
 
@@ -61,7 +61,7 @@
                       label="Комната"
                       counter
                       minlength="4"
-                      :rules="[rules.required]"
+                      :rules="[required]"
                   ></v-text-field>
                 </v-col>
                 <v-col
@@ -74,7 +74,7 @@
                       label="Группа"
                       counter
                       minlength="4"
-                      :rules="[rules.required]"
+                      :rules="[required]"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -87,9 +87,11 @@
             <v-spacer></v-spacer>
 
             <v-btn
+                :disabled="!form"
                 color="primary"
                 variant="text"
                 type="submit"
+                size="large"
                 @click="submitHandler"
             >
               Сохранить
@@ -107,27 +109,27 @@ import store from '../../stores/state'
 export default {
   data() {
     return {
+      form: false,
       dialog: true,
       dateAndTime: '',
       studyModule: '',
       sessionType: '',
       room: '',
       group: '',
-      rules: {
-        required: value => !!value || 'Поле не заполнено',
-      },
     }
   },
   methods:{
     submitHandler() {
-      this.addNewValue()
-      this.start = '' //Очищаем
-      this.studyModule = ''
-      this.sessionType = ''
-      this.room = ''
-      this.group = ''
-      this.dialog = false
-      this.$emit('add')
+      if (this.form){ //Если форма заполнена
+        this.addNewValue() //Вызываем функцию добавления новой записи
+        this.start = '' //Очищаем
+        this.studyModule = ''
+        this.sessionType = ''
+        this.room = ''
+        this.group = ''
+        this.dialog = false
+        this.$emit('add')
+      }
     },
     addNewValue() {
       store.state.createNewSession = {
@@ -148,6 +150,16 @@ export default {
           return "accreditation";
         case 'Экзамен':
           return 'examination'
+      }
+    },
+    required (v) {
+      return !!v || 'Поле должно быть заполнено'
+    },
+    correctDate (v) {
+      if (moment(v).isAfter(new Date())){
+        return true
+      } else {
+        return  'Дата не может быть прошедшей'
       }
     },
   },
