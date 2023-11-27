@@ -236,7 +236,7 @@ body {
 .table__body-info .table__sort-btns__create {
   color: white;
   border-radius: 12px;
-  background-color: rgb(55, 97, 243);
+  background-color: rgb(55, 97, 243) !important;
   max-height: 44px;
   max-width: 112px;
   padding: 0 16px;

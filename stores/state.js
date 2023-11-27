@@ -6,7 +6,8 @@ const store = createStore({
         tableData: [],
         collapsed: false,
         SIDEBAR_WIDTH: 274,
-        SIDEBAR_WIDTH_COLLAPSED: 73
+        SIDEBAR_WIDTH_COLLAPSED: 73,
+        createNewSession: {},
     },
     mutations: {
         changeTableData(state, data) {

@@ -3,8 +3,10 @@ import { defineComponent } from 'vue'
 import moment from 'moment'
 import FilterIcon from "@/components/icons/FilterIcon.vue";
 import IncreaseIcon from "@/components/icons/IncreaseIcon.vue";
+import CreateSessionModal from "@/components/CreateSessionModal.vue";
+import store from "../../stores/state";
 export default defineComponent({
-  components: {IncreaseIcon, FilterIcon},
+  components: {CreateSessionModal, IncreaseIcon, FilterIcon},
   props: ['tableInfo'],
   data () {
     return {
@@ -12,6 +14,7 @@ export default defineComponent({
       itemsPerPage: 11,
       options: {},
       search: '',
+      isActiveCreateSessionModal: false,
       headers: [
         { key: 'start', title: 'Дата и время'},
         { key: 'status', title: 'Статус' },
@@ -75,7 +78,7 @@ export default defineComponent({
       element.forEach((el)=> {
         groupText += el.name + ', '
       })
-      if (groupText) { //Если были комнаты, то убираем пробел и запятую в конце
+      if (groupText) {
         groupText = groupText.slice(0, -2)
       }
       return groupText
@@ -85,6 +88,14 @@ export default defineComponent({
       else if (element === "Завершено") return 'green'
       else return 'red'
     },
+    toggleCreateSession() {
+      return this.isActiveCreateSessionModal = !this.isActiveCreateSessionModal
+    },
+    pushNewSession() {
+      console.log(this.tableInfo)
+      this.tableInfo.unshift(store.state.createNewSession);
+      return this.tableInfo
+    }
   },
 })
 </script>
@@ -103,7 +114,7 @@ export default defineComponent({
       ></v-text-field>
       <button class="table__sort-btns__icon"><filter-icon/></button>
       <button class="table__sort-btns__icon"><increase-icon/></button>
-      <button class="table__sort-btns__create">Создать</button>
+      <button class="table__sort-btns__create" @click="toggleCreateSession">Создать</button>
     </div>
 
     <v-card
@@ -137,6 +148,11 @@ export default defineComponent({
 
       </v-data-table>
     </v-card>
+    <create-session-modal
+        v-if="isActiveCreateSessionModal"
+        @close="toggleCreateSession"
+        @add="pushNewSession"
+    />
   </div>
 </template>
 
