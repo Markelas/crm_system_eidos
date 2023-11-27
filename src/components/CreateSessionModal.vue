@@ -60,7 +60,6 @@
                       v-model="room"
                       variant="solo"
                       label="Комната"
-                      counter
                       minlength="4"
                       :rules="[required]"
                   ></v-text-field>
@@ -73,7 +72,6 @@
                       v-model="group"
                       variant="solo"
                       label="Группа"
-                      counter
                       minlength="4"
                       :rules="[required]"
                   ></v-text-field>
@@ -123,11 +121,6 @@ export default {
     submitHandler() {
       if (this.form){ //Если форма заполнена
         this.addNewValue() //Вызываем функцию добавления в state
-        this.start = '' //Очищаем
-        this.studyModule = ''
-        this.sessionType = ''
-        this.room = ''
-        this.group = ''
         this.dialog = false
         this.$emit('add') //Вызываем событие в родительском компоненте на добавление записи
         this.$emit('close') //Переключаем статус модального окна
