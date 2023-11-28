@@ -15,6 +15,9 @@ const store = createStore({
         },
         toggleSidebar(state){
             state.collapsed = !state.collapsed
+        },
+        addNewSession(state, obj) { //Добавляем новый объект в переменную
+            state.createNewSession = obj
         }
     },
     actions: {

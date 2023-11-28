@@ -120,14 +120,14 @@ export default {
   methods:{
     submitHandler() {
       if (this.form){ //Если форма заполнена
-        this.addNewValue() //Вызываем функцию добавления в state
+        this.addNewSession() //Вызываем функцию добавления в state
         this.dialog = false
         this.$emit('add') //Вызываем событие в родительском компоненте на добавление записи
         this.$emit('close') //Переключаем статус модального окна
       }
     },
-    addNewValue() {
-      store.state.createNewSession = {
+    addNewSession() {
+      store.commit('addNewSession', {
         id: Date.now(),
         start: this.dateAndTime,
         status: {name: 'planned'},
@@ -135,7 +135,7 @@ export default {
         type: {name:this.sessionTypeTranslate(this.sessionType)},
         rooms: [{name:this.room}],
         groups: [{name: this.group}],
-      }
+      })
     },
     sessionTypeTranslate(element) {
       switch (element) {
