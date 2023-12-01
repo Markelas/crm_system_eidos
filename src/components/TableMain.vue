@@ -96,6 +96,7 @@ export default defineComponent({
       return this.tableInfo
     }
   },
+
 })
 </script>
 

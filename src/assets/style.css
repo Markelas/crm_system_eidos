@@ -94,6 +94,7 @@ body {
   margin-top: 30px;
 }
 .sidebar__list__item {
+  opacity: 30%;
   padding: 14px;
   display: flex;
   cursor: pointer;
@@ -127,6 +128,7 @@ body {
   position: absolute;
   bottom: 15px;
   z-index: 5;
+  opacity: 50%;
 }
 .sidebar__teacher {
   cursor: pointer;
@@ -237,6 +239,7 @@ body {
   background-color: rgba(47, 49, 68, 0.08);
   border-radius: 12px;
   margin-left: 14px;
+  opacity: 40%;
 }
 .table__body-info .table__sort-btns__create {
   color: white;
